@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   radius-reverse-proxy:
-    build: radius-reverse-proxy/
+    build: radius-reverse-proxy/with-form
     ports:
     - 8998:8998
   
