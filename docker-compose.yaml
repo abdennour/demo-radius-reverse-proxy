@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  radius-reverse-proxy:
+    build: radius-reverse-proxy/
+    ports:
+    - 8998:8998
+  
+  # 1812/udp and 1813/udp
+  radius-server:
+    image: tpdock/freeradius:2.2.9
+    environment:
+      RADIUS_LISTEN_IP: '*'
+      RADIUS_CLIENTS: 'bigsecret@0.0.0.0/0,anothersecret@127.0.0.1/32'
+      USERS_FILE: /etc/raddb/users
+    volumes:
+    - ./radius-server/raddb:/etc/raddb
+
+  sample-secure-app:
+    build: sample-secure-app/
+
