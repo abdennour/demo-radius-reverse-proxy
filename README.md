@@ -22,6 +22,8 @@ Then :
 - One of client is `everyone` ( ip = any ip , secret = bigsecret )
 
 ## 2. Redius Client - reverse proxy : 
+
+- Released as image [abdennour/radius-auth-proxy]
 - The redius client is the same which behaves as  the reverse proxy based on Apache.
 - Request come to this reverse proxy.
 - Reverse proxy prompts basic auth form

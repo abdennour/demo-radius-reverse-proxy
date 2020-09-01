@@ -2,15 +2,9 @@ version: '3.7'
 
 services:
   radius-reverse-proxy:
-    image: abdennour/radius-auth-proxy:2.4-alpine
+    build: radius-reverse-proxy/with-form
     ports:
     - 8998:8998
-    environment:
-      RADIUS_SERVER_HOSTNAME: radius-server
-      RADIUS_SERVER_SECRET: bigsecret
-      PROXY_URL: http://sample-secure-app/
-      UI_AUTH_TYPE: form
-
   
   # 1812/udp and 1813/udp
   radius-server:
