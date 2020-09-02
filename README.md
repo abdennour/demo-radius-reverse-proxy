@@ -23,7 +23,7 @@ Then :
 
 ## 2. Redius Client - reverse proxy : 
 
-- Released as image [abdennour/radius-auth-proxy]
+- Released as image [abdennour/radius-auth-proxy](https://hub.docker.com/r/abdennour/radius-auth-proxy/tags)
 - The redius client is the same which behaves as  the reverse proxy based on Apache.
 - Request come to this reverse proxy.
 - Reverse proxy prompts basic auth form
