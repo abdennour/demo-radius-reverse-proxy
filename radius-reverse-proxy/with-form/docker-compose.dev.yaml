@@ -1,17 +1,11 @@
 version: '3.7'
 
 services:
-  router:
-    image: nginx:1.19-alpine
-    volumes:
-      - ./router:/etc/nginx
-    ports:
-      - 8998:80
-    depends_on:
-      - radius-reverse-proxy
   radius-reverse-proxy:
-    # build: radius-reverse-proxy/with-form
-    build: radius-reverse-proxy/
+    build: .
+    # build: radius-reverse-proxy/
+    ports:
+    - 8998:8998
   # 1812/udp and 1813/udp
   radius-server:
     image: tpdock/freeradius:2.2.9

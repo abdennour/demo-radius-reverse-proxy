@@ -25,6 +25,7 @@ RUN echo "LoadModule radius_auth_module /usr/lib/apache2/mod_auth_radius.so" >> 
 
 COPY vhost.auth-form.conf /tmp/vhost.conf
 # OR /usr/local/apache2/conf/extra/httpd-vhosts.conf
-RUN cat /tmp/vhost.conf >> conf/httpd.conf
+RUN cat /tmp/vhost.conf >> conf/httpd.conf && \
+    mkdir -p /usr/local/apache2/htdocs/public
 
 COPY login.html /usr/local/apache2/htdocs/login.html
