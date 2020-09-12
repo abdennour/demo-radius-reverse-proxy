@@ -1,0 +1,27 @@
+# Request : User -> Nginx -> Apache -> Redis
+# Response : Redis -> Apache -> Nginx -(proxy)-> app
+version: '3.7'
+
+services:
+  app:
+    build: app/
+  app-proxy:
+    image: nginx:1.19-alpine
+    volumes:
+    - ./app-proxy/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+    - 8888:80
+  auth-proxy:
+    build: radius-auth-proxy/
+    ports:
+      - 8998:8998
+  auth:
+    image: tpdock/freeradius:2.2.9
+    environment:
+      RADIUS_LISTEN_IP: '*'
+      RADIUS_CLIENTS: 'bigsecret@0.0.0.0/0,anothersecret@127.0.0.1/32'
+      USERS_FILE: /etc/raddb/users
+    volumes:
+    - ./radius-server/raddb:/etc/raddb
+
+
